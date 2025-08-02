@@ -5,6 +5,7 @@ import { AlertTriangle, CheckCircle2, Info, RefreshCw } from "lucide-react"
 import KpiCard from "@/components/kpi-card"
 import ServiceTable from "@/components/service-table"
 import { useKpis } from "@/lib/hooks"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const queryClient = new QueryClient()
 
@@ -13,11 +14,11 @@ function E2EPaymentMonitor() {
 
   return (
     <div className="min-h-screen bg-gray-50/50">
-      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+      <main className="mx-auto max-w-screen-xl p-4 md:p-8 flex flex-1 flex-col gap-4 md:gap-8">
         <div className="flex items-center">
           <h1 className="font-semibold text-lg md:text-2xl">E2E Payment Monitor</h1>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           <KpiCard
             title="Recent Issues"
             value={kpiData?.recentIssues.value}
@@ -47,9 +48,14 @@ function E2EPaymentMonitor() {
             isLoading={kpisLoading}
           />
         </div>
-        <div>
-          <ServiceTable />
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Service Status Overview</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ServiceTable />
+          </CardContent>
+        </Card>
       </main>
     </div>
   )
