@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* AG Grid centered headers */
+.ag-grid-centered-headers .ag-header-cell.centered-header .ag-header-cell-label {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.ag-grid-centered-headers .ag-header-cell.centered-header {
+  text-align: center !important;
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

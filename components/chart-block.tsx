@@ -23,7 +23,7 @@ export default function ChartBlock({ title, description, data, timeRanges, yAxis
   const chartConfig = {
     duration: {
       label: "Duration (sec)",
-      color: "hsl(var(--chart-1))",
+      color: "hsl(217, 91%, 60%)",
     },
   }
 
