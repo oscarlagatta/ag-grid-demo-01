@@ -14,6 +14,32 @@
   text-align: center !important;
 }
 
+/* Remove vertical line between Service column and Today column */
+.ag-theme-quartz .ag-pinned-left-cols-container .ag-row .ag-cell:last-child {
+  border-right: none !important;
+}
+
+.ag-theme-quartz .ag-pinned-left-header .ag-header-cell:last-child {
+  border-right: none !important;
+}
+
+/* Remove blue borders from selected/focused rows */
+.ag-theme-quartz .ag-row-focus .ag-cell {
+  border: none !important;
+}
+
+.ag-theme-quartz .ag-row-selected .ag-cell {
+  border: none !important;
+}
+
+.ag-theme-quartz .ag-cell-focus {
+  border: none !important;
+}
+
+.ag-theme-quartz .ag-row:focus .ag-cell {
+  border: none !important;
+}
+
 
 @layer utilities {
   .text-balance {
