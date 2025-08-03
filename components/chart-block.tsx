@@ -23,65 +23,64 @@ export default function ChartBlock({ title, description, data, timeRanges, yAxis
   const chartConfig = {
     duration: {
       label: "Duration (sec)",
-      color: "hsl(217, 91%, 60%)",
+      color: "hsl(217, 91%, 60%)", // Blue color instead of the CSS variable
     },
   }
 
   return (
-    <Card className="flex flex-col h-full">
-      <CardHeader className="flex-row items-center justify-between pb-2">
-        <div className="grid gap-1.5">
-          <CardTitle>{title}</CardTitle>
-          <div className="flex items-center gap-2">
-            <Info className="h-4 w-4 text-muted-foreground" />
-            <CardDescription>{description}</CardDescription>
+      <Card className="flex flex-col h-full">
+        <CardHeader className="flex-row items-center justify-between pb-2">
+          <div className="grid gap-1.5">
+            <CardTitle>{title}</CardTitle>
+            <div className="flex items-center gap-2">
+              <Info className="h-4 w-4 text-muted-foreground" />
+              <CardDescription>{description}</CardDescription>
+            </div>
           </div>
-        </div>
-        <Select value={timeRange} onValueChange={setTimeRange}>
-          <SelectTrigger className="w-[140px]">
-            <SelectValue placeholder="Select time range" />
-          </SelectTrigger>
-          <SelectContent>
-            {timeRanges.map((range) => (
-              <SelectItem key={range} value={range}>
-                {range}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </CardHeader>
-      <CardContent className="flex-1 flex">
-        <ChartContainer config={chartConfig} className="w-full h-[250px]">
-          <LineChart
-            accessibilityLayer
-            data={data}
-            margin={{
-              left: 12,
-              right: 12,
-              top: 5,
-              bottom: 20,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="x"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 5)}
-              label={{ value: xAxisLabel, position: "insideBottom", offset: -15 }}
-            />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              label={{ value: yAxisLabel, angle: -90, position: "insideLeft" }}
-            />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Line dataKey="y" type="monotone" stroke="var(--color-duration)" strokeWidth={2} dot={false} />
-          </LineChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+          <Select value={timeRange} onValueChange={setTimeRange}>
+            <SelectTrigger className="w-[140px]">
+              <SelectValue placeholder="Select time range" />
+            </SelectTrigger>
+            <SelectContent>
+              {timeRanges.map((range) => (
+                  <SelectItem key={range} value={range}>
+                    {range}
+                  </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </CardHeader>
+        <CardContent className="flex-1 flex">
+          <ChartContainer config={chartConfig} className="w-full h-[250px]">
+            <LineChart
+                accessibilityLayer
+                data={data}
+                margin={{
+                  left: 12,
+                  right: 12,
+                  top: 5,
+                  bottom: 20,
+                }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                  dataKey="x"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  label={{ value: xAxisLabel, position: "insideBottom", offset: -15 }}
+              />
+              <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  label={{ value: yAxisLabel, angle: -90, position: "insideLeft" }}
+              />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+              <Line dataKey="y" type="monotone" stroke="var(--color-duration)" strokeWidth={2} dot={false} />
+            </LineChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
   )
 }
