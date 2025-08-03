@@ -1039,3 +1039,100 @@ Please confirm which systems/databases contain:
 - Historical transaction data
 
 This specification should provide everything needed to build a fully functional Payment Monitor dashboard. Let me know if you need clarification on any specific requirements!
+
+# Data example
+
+Here's the data formatted in a much more readable table format:
+
+# Payment Transaction Duration Data
+
+## Summary
+This dataset contains **58 data points** spanning from **January 1st to June 7th**, showing daily average transaction durations, transaction counts, and performance metrics.
+
+## Formatted Data Table
+
+| Date     | Avg Duration | Transaction Count | Duration (sec) | Performance Notes |
+|----------|--------------|-------------------|----------------|-------------------|
+| **January 2025** |
+| Jan 1    | 01:04:05     | 21,655           | 3,845          | High volume day |
+| Jan 2    | 00:29:13     | 882              | 1,753          | |
+| Jan 3    | 00:33:12     | 911              | 1,992          | |
+| Jan 6    | 00:27:32     | 1,265            | 1,652          | |
+| Jan 7    | 00:55:01     | 841              | 3,301          | |
+| Jan 9    | 00:12:22     | 872              | 742            | Fast processing |
+| Jan 13   | 00:29:19     | 929              | 1,759          | |
+| Jan 15   | 02:07:52     | 1,462            | 7,672          | Slow day |
+| Jan 16   | 00:57:36     | 1,209            | 3,456          | |
+| Jan 18   | 01:41:10     | 1,475            | 6,070          | |
+| Jan 20   | 00:01:00     | 353              | 60             | Very fast |
+| Jan 23   | 00:06:28     | 436              | 388            | |
+| Jan 27   | 00:04:16     | 501              | 256            | |
+| Jan 30   | 00:10:41     | 381              | 641            | |
+| Jan 31   | 00:00:19     | 357              | 19             | Extremely fast |
+| **February 2025** |
+| Feb 1    | 00:52:42     | 485              | 3,162          | |
+| Feb 5    | 00:04:44     | 424              | 284            | |
+| Feb 8    | 00:06:19     | 385              | 379            | |
+| Feb 12   | 00:06:01     | 385              | 361            | |
+| Feb 17   | 13:33:50     | 523              | 48,830         | ⚠️ **MAJOR ISSUE** |
+| Feb 18   | 00:54:41     | 500              | 3,281          | Recovered |
+| Feb 20   | 00:01:01     | 703              | 61             | |
+| Feb 23   | 00:13:26     | 377              | 806            | |
+| Feb 25   | 00:10:16     | 488              | 616            | |
+| **March 2025** |
+| Mar 1    | 00:35:50     | 9,114            | 2,150          | High volume |
+| Mar 4    | 00:08:59     | 408              | 539            | |
+| Mar 6    | 00:16:25     | 465              | 985            | |
+| Mar 7    | 02:11:15     | 520              | 7,875          | Slow processing |
+| Mar 11   | 00:00:59     | 399              | 59             | |
+| Mar 17   | 00:00:25     | 533              | 25             | Very fast |
+| Mar 20   | 00:00:29     | 366              | 29             | |
+| Mar 26   | 00:00:36     | 386              | 36             | |
+| Mar 31   | 00:03:11     | 497              | 191            | |
+| **April 2025** |
+| Apr 1    | 00:40:44     | 8,854            | 2,444          | High volume |
+| Apr 7    | 01:38:00     | 495              | 5,880          | |
+| Apr 9    | 00:03:41     | 350              | 221            | |
+| Apr 10   | 00:03:02     | 384              | 182            | |
+| Apr 15   | 00:12:54     | 502              | 774            | |
+| Apr 18   | 00:02:14     | 360              | 134            | |
+| Apr 20   | 00:01:00     | 416              | 60             | |
+| Apr 26   | 00:00:36     | 344              | 36             | |
+| **May 2025** |
+| May 1    | 00:37:07     | 14,976           | 2,227          | **Highest volume** |
+| May 3    | 01:36:15     | 485              | 5,775          | |
+| May 5    | 01:30:00     | 476              | 5,400          | |
+| May 8    | 00:00:47     | 354              | 47             | |
+| May 9    | 03:17:29     | 471              | 11,849         | Very slow |
+| May 13   | 00:00:53     | 481              | 53             | |
+| May 18   | 30:44:51     | 1                | 110,691        | ⚠️ **CRITICAL ISSUE** |
+| May 20   | 00:10:46     | 658              | 646            | |
+| May 23   | 00:11:02     | 900              | 662            | |
+| May 27   | 00:12:38     | 1,755            | 758            | |
+| May 29   | 00:02:13     | 978              | 133            | |
+| May 31   | 01:28:51     | 1,175            | 5,331          | |
+| **June 2025** |
+| Jun 1    | 00:23:31     | 8,733            | 1,411          | High volume |
+| Jun 3    | 00:01:56     | 1,116            | 116            | |
+| Jun 5    | 00:02:01     | 971              | 121            | |
+| Jun 7    | 00:02:27     | 891              | 147            | |
+
+## Key Insights
+
+### 🚨 Critical Issues Identified
+- **Feb 17**: 13+ hours average duration (48,830 sec) - System failure or timeout issues
+- **May 18**: 30+ hours average duration (110,691 sec) - Single transaction, likely stuck process
+
+### 📊 Performance Patterns
+- **Best Performance**: Jan 31 (19 sec), Mar 17 (25 sec), Mar 20 (29 sec)
+- **High Volume Days**: Jan 1 (21,655 transactions), May 1 (14,976 transactions)
+- **Typical Range**: Most days between 1-60 minutes average duration
+- **Monthly Trend**: Performance generally improves from Jan to June (excluding outliers)
+
+### 💡 Recommendations
+1. Investigate the Feb 17 and May 18 incidents
+2. Implement alerting for transactions exceeding 10 minutes
+3. Consider auto-timeout mechanisms for stuck transactions
+4. Monitor correlation between volume and performance
+
+This formatted version makes it much easier to spot trends, outliers, and performance issues in your payment transaction data!
