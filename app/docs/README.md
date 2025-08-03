@@ -1136,3 +1136,58 @@ This dataset contains **58 data points** spanning from **January 1st to June 7th
 4. Monitor correlation between volume and performance
 
 This formatted version makes it much easier to spot trends, outliers, and performance issues in your payment transaction data!
+
+More Calculations and corrected insights:
+
+## Verified Calculations for Critical Issues
+
+### May 18th Data:
+- **Duration**: 110,691 seconds
+- **Calculation**: 110,691 ÷ 3,600 = **30.75 hours** = **30 hours, 44 minutes, 51 seconds**
+- **Transaction Count**: 1
+
+### February 17th Data:
+- **Duration**: 48,830 seconds
+- **Calculation**: 48,830 ÷ 3,600 = **13.56 hours** = **13 hours, 33 minutes, 50 seconds**
+- **Transaction Count**: 523
+
+## Revised Critical Insights
+
+### 🚨 **May 18th - Multi-Day Transaction Issue**
+Since **30+ hours exceeds 24 hours**, this indicates:
+- **Cross-day transaction**: Started on May 17th, completed on May 19th
+- **System failure**: Transaction got stuck and wasn't properly handled across day boundaries
+- **Only 1 transaction processed** that entire day - suggests system was blocked/hung
+- **Business impact**: Likely prevented other transactions from processing
+
+### 🔍 **February 17th - Heavy Load Day**
+- **13.5 hours average** with **523 transactions**
+- This suggests system overload rather than a single stuck transaction
+- Multiple transactions were all taking extremely long to process
+- Possible causes: High volume, system resource exhaustion, or cascading failures
+
+## Key Operational Insights
+
+### **System Architecture Issues**
+1. **No proper timeout mechanisms** - transactions shouldn't run beyond business hours
+2. **Cross-day boundary handling** - system doesn't properly manage day rollover
+3. **Resource contention** - one stuck transaction can block others
+
+### **Monitoring Gaps**
+1. **Missing real-time alerts** for transactions > 1 hour
+2. **No automatic timeout/kill switches** for runaway processes
+3. **Insufficient load balancing** during high-volume periods
+
+### **Business Impact**
+- **May 18th**: Essentially a full day outage (only 1 transaction)
+- **Feb 17th**: Severe performance degradation affecting 523 transactions
+- **Customer experience**: Likely resulted in payment failures, timeouts, and complaints
+
+### **Immediate Actions Needed**
+1. **Implement hard timeouts** (e.g., 10-15 minutes maximum)
+2. **Add cross-day transaction handling**
+3. **Create alerting** for any transaction > 5 minutes
+4. **Investigate root causes** of these specific incidents
+5. **Review system capacity** during high-volume periods
+
+The fact that a transaction can run for **30+ hours** crossing multiple calendar days indicates serious architectural flaws in the payment processing system that need immediate attention.
