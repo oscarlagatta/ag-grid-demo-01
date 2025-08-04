@@ -1,6 +1,5 @@
 ## Data Structure Analysis
 
-From your file data, I can see:
 - **Date**: Day-Month format (01-Jan, 02-Jan, etc.)
 - **Average Transaction Duration**: Time in HH:MM:SS format
 - **Count of CTX_ID**: Number of transactions
