@@ -3,7 +3,7 @@
 - **Date**: Day-Month format (01-Jan, 02-Jan, etc.)
 - **Average Transaction Duration**: Time in HH:MM:SS format
 - **Count of CTX_ID**: Number of transactions
-- **Duration (seconds)**: The duration converted to seconds (this matches `avgSeconds` in your JSON)
+- **Duration (seconds)**: The duration converted to seconds (this matches `avgSeconds` in the JSON)
 
 ## Suggested API Response Format
 
@@ -42,7 +42,7 @@ interface HourlyAverageResponse {
 
 ## Chart Integration
 
-Based on your `ChartBlock` component, the data should be transformed to match the `ChartPoint` interface:
+Based on the `ChartBlock` component, the data should be transformed to match the `ChartPoint` interface:
 
 ```typescript
 // For daily chart
@@ -59,7 +59,7 @@ const hourlyChartData: ChartPoint[] = hourlyData.map(item => ({
 ```
 
 
-## Key Observations from Your Data
+## Key Observations
 
 1. **Significant Outliers**: I notice some extreme values like "30:44:51" (May 18th) which is 110,691 seconds - this suggests either a system issue or a very long-running transaction that should be highlighted in the charts.
 
@@ -75,7 +75,7 @@ The API should also support:
 - **Outlier handling**: Option to exclude extreme values
 - **Status metadata**: Include any service status information for correlation
 
-Here's a suggested implementation for applying real data to your two charts:
+Here's a suggested implementation for applying real data to the two charts:
 
 ## 1. Update API Route to Use Real Data
 
@@ -83,7 +83,7 @@ Here's a suggested implementation for applying real data to your two charts:
 import { NextResponse } from "next/server"
 import type { ServiceCharts } from "@/lib/types"
 
-// Mock data based on your actual data structure
+// Mock data based on the actual data structure
 const mockDailyData = [
   { date: "2025-01-01", avgSeconds: 3845, count: 21655, avgFormatted: "01:04:05" },
   { date: "2025-01-02", avgSeconds: 1753, count: 882, avgFormatted: "00:29:13" },
@@ -394,10 +394,10 @@ export default function ExpandableCharts(props: any) {
 
 ## 4. Update the Hook to Support Parameters
 
-You'll need to update your `useServiceCharts` hook to accept and pass the time range parameters. The hook should look something like this:
+You'll need to update `useServiceCharts` hook to accept and pass the time range parameters. The hook should look something like this:
 
 ```typescript
-// In your hooks file
+// In hooks file
 export function useServiceCharts(serviceId: string, params?: { dailyTimeRange?: string; hourlyTimeRange?: string }) {
   return useQuery({
     queryKey: ['service-charts', serviceId, params],
@@ -418,7 +418,7 @@ export function useServiceCharts(serviceId: string, params?: { dailyTimeRange?: 
 
 This implementation provides:
 
-1. **Real data structure** based on your actual data format
+1. **Real data structure** based on actual data format
 2. **Dynamic time range filtering** for both charts
 3. **Better tooltips** showing formatted time
 4. **Y-axis formatting** for better readability
@@ -434,7 +434,7 @@ CHANGES to implement the real data structure and time range functionality for th
 import { NextResponse } from "next/server"
 import type { ServiceCharts } from "@/lib/types"
 
-// Mock data based on your actual data structure
+// Mock data based on actual data structure
 const mockDailyData = [
   { date: "2025-01-01", avgSeconds: 3845, count: 21655, avgFormatted: "01:04:05" },
   { date: "2025-01-02", avgSeconds: 1753, count: 882, avgFormatted: "00:29:13" },
@@ -834,12 +834,12 @@ These changes implement:
 6. **Proper API integration** - Supports query parameters for time ranges
 7. **Type safety** - Updated TypeScript types to support new features
 
-The charts now display meaningful transaction duration data that matches your actual data structure, with interactive time range selection and better user experience.
+The charts now display meaningful transaction duration data that matches the actual data structure, with interactive time range selection and better user experience.
 
 
 API Requirements
 
-Based on your Payment Monitor application, 
+Based on the Payment Monitor application, 
 
 API specification document to backend:
 
@@ -1132,7 +1132,7 @@ This dataset contains **58 data points** spanning from **January 1st to June 7th
 3. Consider auto-timeout mechanisms for stuck transactions
 4. Monitor correlation between volume and performance
 
-This formatted version makes it much easier to spot trends, outliers, and performance issues in your payment transaction data!
+This formatted version makes it much easier to spot trends, outliers, and performance issues in the payment transaction data!
 
 More Calculations and corrected insights:
 
